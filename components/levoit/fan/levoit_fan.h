@@ -13,7 +13,10 @@ class LevoitFan : public Component, public fan::Fan {
   void setup() override;
   void dump_config() override;
 
-  fan::FanTraits get_traits() override { return this->traits_; }
+  fan::FanTraits get_traits() override {
+    this->wire_preset_modes_(this->traits_);
+    return this->traits_;
+  }
 
  protected:
   void control(const fan::FanCall &call) override;
